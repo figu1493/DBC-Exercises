@@ -7,11 +7,12 @@
 # word, say, your own name. What if you wanted to search your browser for anything that matches the pattern for 
 # a social security number? For that, you'd use Regular Expressions.
 
-# As you work through the exercises of this challenge, we recommend you use http://rubular.com to help you code your regex.
+# As you work through the exercises of this challenge, we recommend you use http://rubular.com 
+# to help you code your regex.
 
 # Determine whether a string contains a Social Security number.
 def has_ssn?(string)
-	if string.match(%r/\d\d\d[-]\d\d[-]\d\d\d\d/)
+  if string.match(%r/\d\d\d[-]\d\d[-]\d\d\d\d/)
 		true
 	else
 		false
@@ -20,30 +21,57 @@ end
 
 # Return the Social Security number from a string.
 def grab_ssn(string)
-	string.match(%r/\d\d\d[-]\d\d[-]\d\d\d\d/) ? string.match(%r/\d\d\d[-]\d\d[-]\d\d\d\d/).to_s : nil
+  string.match(%r/\d\d\d[-]\d\d[-]\d\d\d\d/) ? string.match(%r/\d\d\d[-]\d\d[-]\d\d\d\d/).to_s : nil
 end
 
 # Return all of the Social Security numbers from a string.
 def grab_all_ssns(string)
-	array = []
-	if string.match(%r/\d\d\d[-]\d\d[-]\d\d\d\d/)
-		array << string.match(%r/\d\d\d[-]\d\d[-]\d\d\d\d/).to_a
-	else
-	end
-	array
+  array = string.split.to_a
+	new_array = []
+	array.each do |x|
+		if x.match(%r/\d\d\d[-]\d\d[-]\d\d\d\d/)
+			new_array << x.partition(%r/\d\d\d[-]\d\d[-]\d\d\d\d/)[1]
+		else
+		end
+	end	
+	new_array
 end
 
 # Obfuscate all of the Social Security numbers in a string. Example: XXX-XX-4430.
 def hide_all_ssns(string)
+  array = string.split.to_a
+  new_array = []
+  array.each do |x|
+		if x.match(%r/\d\d\d[-]\d\d[-]\d\d\d\d/)
+			new_array << x.gsub(%r/\d\d\d[-]\d\d/, "XXX-XX")
+		elsif x.match(%r/\D\D\D[-]\D\D[-]\d\d\d\d/)
+      new_array << x
+    else 
+      new_array << x
+		end
+	end	
+	new_array.join(' ').to_s
 end
 
 # Ensure all of the Social Security numbers use dashes for delimiters.
 # Example: 480.01.4430 and 480014430 would both be 480-01-4430.
 def format_ssns(string)
+  array = string.split.to_a
+  new_array = []
+  array.each do |x|
+		if x.match(%r/\d\d\d[-]\d\d[-]\d\d\d\d/)
+			new_array << x
+		elsif x.match(%r/\d\d\d\d\d\d\d\d\d/)
+			x.insert(3, "-")
+			x.insert(6, "-")
+      new_array << x
+    elsif x.match(%r/\d\d\d[.]\d\d[.]\d\d\d\d/)
+      new_array << x.gsub!(/[.]/, "-")
+    else
+    	new_array << x
+		end
+	end	
+	new_array.join(' ').to_s
 end
-
-puts has_ssn?("My social security: 000-11-2222")
-puts grab_ssn("My social security: 000-11-2222")
-puts grab_all_ssns("My social security: 000-11-2222, 111-22-3333")
 
 
