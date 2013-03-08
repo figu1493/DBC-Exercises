@@ -1,32 +1,30 @@
 def christmas_tree(x)
-	stump = x
 	z = 1
-		while z < x
-			y = 0
-			while y < x
-				space = " "
-				print space
-				y += 1
-			end
-			star = "* "
-			print "#{star*z}"
-			puts ''
-			z += 1
-			x -= 1
+	one_more = x + 1
+	rows = x
+	stump_row = x
+	while z < one_more
+		y = 0
+		while y < rows
+			print "#{" "}"
+			y += 1
 		end
-	if x <= 5
-		print "#{space*stump}" 
-		puts "*"
-	else x <= 25 
-		print "#{space*(stump-1)}" 
-		puts "* *"
-		print "#{space*(stump-1)}" 
-		puts "* *"
+		print "#{"* "*z}"
+		puts ''
+		z += 1
+		rows -= 1
+	end
+
+	stump = 1
+	while stump <= stump_row 
+		print "#{" "*(stump_row-(stump_row/5-1))}" 
+		puts "#{"* "*(stump_row/5)}"
+		stump += 5
 	end
 end
 
+puts christmas_tree(5)
+
 puts christmas_tree(10)
 
-puts christmas_tree(20)
-
-
+puts christmas_tree(15)
