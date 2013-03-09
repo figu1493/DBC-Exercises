@@ -28,3 +28,5 @@ puts christmas_tree(5)
 puts christmas_tree(10)
 
 puts christmas_tree(15)
+
+puts christmas_tree(20)
