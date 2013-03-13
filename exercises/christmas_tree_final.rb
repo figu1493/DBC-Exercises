@@ -32,3 +32,21 @@ puts christmas_tree(15)
 puts christmas_tree(20)
 
 puts christmas_tree(30)
+
+#add notes to commit
+
+# asdf
+# asdf
+# asdf
+# asdf
+# asdf
+# asdf
+# asdf
+# asdf
+# asdf
+# asdf
+# asdf
+# asdf
+# asdf
+# asdf
+# asdf
