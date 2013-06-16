@@ -12,4 +12,4 @@ def count(x)
 	end
 end
 
-count(1000)
+count(100000)
