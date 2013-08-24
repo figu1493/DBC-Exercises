@@ -4,7 +4,7 @@
 def mean(array)
 	total = 0
 	array.each do |x|
-	total = total + x
+		total = total + x
 	end
 	mean = total.to_f / array.count
 	puts mean
